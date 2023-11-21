@@ -3,7 +3,6 @@ import { useState } from "react";
 import { validateEmail } from "./utils";
 
 const PasswordErrorMessage = () => {
-      
       return (
     <p className="FieldError">Password should have at least 8 characters</p>
   );
@@ -23,20 +22,27 @@ function App() {
 
   const getIsFormValid = () => {
     // Implement this function
-
-
+    if (firstName && validateEmail(email) && password.value.length > 8 && role != 'role' ) {
       return true;
-
+    }
+    else{
+      return false;
+    }
   };
 
   const clearForm = (e) => {
     // Implement this function
-    e.preventDefault();
+    // e.preventDefault();
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword({...password,value:""});
+    setRole("role");
 
   };
 
   const handleSubmit = (e) => {
-
+    e.preventDefault();
     alert("Account created!");
     clearForm();
   };
