@@ -3,8 +3,8 @@ import { useState } from "react";
 import { validateEmail } from "./utils";
 
 const PasswordErrorMessage = () => {
-
-     return (
+      
+      return (
     <p className="FieldError">Password should have at least 8 characters</p>
   );
 
@@ -47,32 +47,57 @@ function App() {
         <fieldset>
           <h2>Sign Up</h2>
           <div className="Field">
-            <label>
+            <label htmlFor="firstName">
               First name <sup>*</sup>
             </label>
-            <input placeholder="First name"  />
+            <input 
+            placeholder="First name"  
+            type="text"
+            value={ firstName }
+            onChange={(e) => setFirstName(e.target.value)}
+            />
           </div>
           <div className="Field">
-            <label>Last name</label>
-            <input placeholder="Last name"  />
+            <label htmlFor="lastName">
+              Last name</label>
+            <input 
+            placeholder="Last name"  
+            type="text"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value) }
+            />
           </div>
           <div className="Field">
-            <label>
+            <label htmlFor="email">
               Email address <sup>*</sup>
             </label>
-            <input placeholder="Email address"  />
+            <input 
+            placeholder="Email address"  
+            type="email"
+            value={ email }
+            onChange={(e) => setEmail(e.target.value) }
+            />
           </div>
           <div className="Field">
-            <label>
+            <label htmlFor="password">
               Password <sup>*</sup>
             </label>
-            <input placeholder="Password"   />
+            <input 
+            placeholder="Password"   
+            type="password"
+            value={ password.value }
+            onChange={(e)=>setPassword({...password,value:e.target.value})}
+            onBlur={() => setPassword({...password,isTouched:true})}
+            />
+            {password.value.length < 8  && password.isTouched ? <PasswordErrorMessage/>:<></>}
           </div>
           <div className="Field">
-            <label>
+            <label htmlFor="role">
               Role <sup>*</sup>
             </label>
-            <select >
+            <select 
+            value={role}
+            onChange={(e) => setRole(e.target.value)}>
               <option value="role">Role</option>
               <option value="individual">Individual</option>
               <option value="business">Business</option>
